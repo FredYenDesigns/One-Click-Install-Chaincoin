@@ -29,9 +29,26 @@ error() {
 
 prepdependencies() { #TODO: add error detection
 	message "Installing dependencies..."
-	sudo apt-get update
-	sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
-	sudo apt-get install automake libdb++-dev build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libminiupnpc-dev git software-properties-common g++ bsdmainutils libevent-dev -y
+	sudo apt update -y
+	sudo apt upgrade -y
+	sudo apt-get install build-essential -y
+	sudo apt-get install libtool -y
+	sudo apt-get install autotools-dev -y
+	sudo apt-get install automake -y
+	sudo apt-get install autoconf -y
+	sudo apt-get install pkg-config -y
+	sudo apt-get install libssl-dev -y
+	sudo apt-get install libevent-dev -y
+	sudo apt-get install bsdmainutils -y
+	sudo apt-get install libboost-system-dev -y
+	sudo apt-get install libboost-filesystem-dev -y
+	sudo apt-get install libboost-chrono-dev -y
+	sudo apt-get install libboost-program-options-dev -y
+	sudo apt-get install libboost-test-dev -y
+	sudo apt-get install libboost-thread-dev -y
+	sudo apt-get install libminiupnpc-dev -y
+	sudo apt-get install libzmq3-dev -y
+	sudo apt-get install software-properties-common -y
 	sudo add-apt-repository ppa:bitcoin/bitcoin -y
 	sudo apt-get update
 	sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
