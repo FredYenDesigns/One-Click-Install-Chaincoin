@@ -135,7 +135,7 @@ sentinel() {
 
 success() {
 	
-	message "SUCCESS! Your CHC Wallet Is Installed. Please update config files"
+	message "SUCCESS! Your CHC Wallet Is Installed. Time to Edit Config Files"
 	message "Please Donate to Fred!"
 	message "His CHC Address: CPKc6gk5S3zyVgD4yKSoz5M7MQxiuSCupV"
 	exit 0
