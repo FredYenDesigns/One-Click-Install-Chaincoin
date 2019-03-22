@@ -7,7 +7,7 @@ Scripts for installing and updating masternode coins such as ChainCoin easily. I
 Experimental script, use at your own risk!!!
 
 ----------------
-Supported coins
+Supported Coins
 ----------------
 -ChainCoin
 
@@ -31,7 +31,11 @@ License:  Standard MIT License
 ---------------
 DONATIONS: 
 --------------- 
+
 CHC: CPKc6gk5S3zyVgD4yKSoz5M7MQxiuSCupV
+
 BTC: 17HjUU7YqrsAeBCeFPRjqJqmPsSfzszgD4
+
 ETH: 0x1275e5693CC69dB1F3d55D0D346d84fbbEC0dD6c
+
 LTC: LRTPjWzFVfXjbQAAW7BHG5m3p7YPFtdN6J
