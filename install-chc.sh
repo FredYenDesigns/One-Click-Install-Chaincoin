@@ -85,7 +85,7 @@ createconf() {
 	mnip=$(curl -s https://api.ipify.org)
 	rpcuser=$(date +%s | sha256sum | base64 | head -c 10 ; echo)
 	rpcpass=$(openssl rand -base64 32)
-	printf "%s\n" "rpcuser=$rpcuser" "rpcpassword=$rpcpass" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=$MNPRIVKEY" > $CONFILE
+	printf "%s\n" "rpcauth={rpcauth user}:{rpcauth key}" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=$MNPRIVKEY" > $CONFILE
 
         chaincoind
         message "Wait 10 seconds for daemon to load..."
@@ -98,18 +98,7 @@ createconf() {
 	message "Updating chaincoin.conf..."
         printf "%s\n" "rpcuser=$rpcuser" "rpcpassword=$rpcpass" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=$MNPRIVKEY" > $CONFILE
 
-}
 
-createhttp() {
-	cd ~/
-	mkdir web
-	cd web
-	wget https://raw.githubusercontent.com/chaoabunga/chc-scripts/master/index.html
-	wget https://raw.githubusercontent.com/chaoabunga/chc-scripts/master/stats.txt
-	(crontab -l 2>/dev/null; echo "* * * * * echo MN Count:  > ~/web/stats.txt; /usr/local/bin/chaincoind masternode count >> ~/web/stats.txt; /usr/local/bin/chaincoind getinfo >> ~/web/stats.txt") | crontab -
-	mnip=$(curl -s https://api.ipify.org)
-	sudo python3 -m http.server 8000 --bind $mnip 2>/dev/null &
-	echo "Web Server Started!  You can now access your stats page at http://$mnip:8000"
 }
 
 sentinel() {
@@ -117,12 +106,12 @@ sentinel() {
 	cd ~/
 	sudo apt-get update
 	sudo apt-get -y install python-virtualenv
+	sudo apt install virtualenv -y
 	git clone https://github.com/chaincoin/sentinel.git && cd sentinel
 	virtualenv ./venv && ./venv/bin/pip install -r requirements.txt
 	git pull
-	rm -rf venv && virtualenv ./venv && ./venv/bin/pip install -r requirements.txt
 	message "Creating sentinel.conf..."
-	printf "%s\n" "rpcuser=$rpcuser" "rpcpassword=$rpcpass" "rpcport=11995" "rpchost=127.0.0.1" "network=mainnet" "db_name=database/sentinel.db" "db_driver=sqlite" > sentinel.conf
+	printf "%s\n" "rpcuser={rpcauth user}" "rpcpassword={rpcauth password}" "rpcport=11995" "rpchost=127.0.0.1" "network=mainnet" "db_name=database/sentinel.db" "db_driver=sqlite" > sentinel.conf
 	message "Updating Crontab..."
 	(crontab -l 2>/dev/null; echo "* * * * * cd /root/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1") | crontab -
 }
