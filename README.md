@@ -1,15 +1,15 @@
 ---------
-mnscripts
+One-Click Install
 ---------
 
 Version: 0.1.1.3
-Scripts for installing and updating masternode coins such as ChainCoin and SocialSend easily. Installs Masternode, generate a key and the conf line for you.
+Scripts for installing and updating masternode coins such as ChainCoin easily. Installs Masternode, generate a key and the conf line for you.
 Experimental script, use at your own risk!!!
 
 ----------------
 Supported coins
 ----------------
--ChainCoin, Social Send
+-ChainCoin
 
 ---------------
 Tested Systems: 
@@ -28,14 +28,10 @@ License:  Standard MIT License
 
 **********
 
-Donations:  
-Bitcoin:    15Jhcshv7qFAHmGG731xbtt67bB5gcEJ96
-
-Chaincoin:  Cd7dPp1vC9L5fWtC1WtGpmXbjSpwgAyaq7
-
-SocialSend: SPsmrViyWRjqD8ngdmHMxpJz6AUcerHWtc
-
-
-            
-Live stream help and video for masternodes: https://www.youtube.com/c/chaoabunga
-1-liner masternode install scripts, faucets and more at: https://nodes.mn
+---------------
+DONATIONS: 
+--------------- 
+CHC: CPKc6gk5S3zyVgD4yKSoz5M7MQxiuSCupV
+BTC: 17HjUU7YqrsAeBCeFPRjqJqmPsSfzszgD4
+ETH: 0x1275e5693CC69dB1F3d55D0D346d84fbbEC0dD6c
+LTC: LRTPjWzFVfXjbQAAW7BHG5m3p7YPFtdN6J
