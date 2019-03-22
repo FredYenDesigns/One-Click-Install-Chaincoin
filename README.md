@@ -6,6 +6,7 @@ Version: 0.1.2
 This script was forked from Chaoabunga's One-Liner.
 - Simplified Code and Removed Auto-fill Features
 - Config Files Set Up for RPCAUTH Instead of RPCUSER and RPCPASSWORD
+- Removed Web Monitor
 - Does Not Auto-start Wallet
 
 Certified Noob, use at your own risk!!!
