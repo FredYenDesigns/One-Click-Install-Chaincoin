@@ -2,9 +2,13 @@
 One-Click Install
 ---------
 
-Version: 0.1.1.3
-Scripts for installing and updating masternode coins such as ChainCoin easily. Installs Masternode, generate a key and the conf line for you.
-Experimental script, use at your own risk!!!
+Version: 0.1.2
+This script was forked from Chaoabunga's One-Liner.
+- Simplified Code and Removed Auto-fill Features
+- Config Files Set Up for RPCAUTH Instead of RPCUSER and RPCPASSWORD
+- Does Not Auto-start Wallet
+
+Certified Noob, use at your own risk!!!
 
 ----------------
 Supported Coins
@@ -18,9 +22,6 @@ Tested Systems:
 
 Please choose a test system from above.
 On a brand new VPS copy and paste the following line and press ENTER:
-
-Examples:
-(ChainCoin) (New! No more genkey as input!)
 
 curl https://raw.githubusercontent.com/FredYenDesigns/One-Click-Install-Chaincoin/master/install-chc.sh | bash
 
