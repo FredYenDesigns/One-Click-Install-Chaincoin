@@ -28,7 +28,7 @@ error() {
 
 
 prepdependencies() { #TODO: add error detection
-	message "Installing dependencies..."
+	message "Installing CHC Dependencies..."
 	sudo apt update -y
 	sudo apt upgrade -y
 	sudo apt-get install build-essential -y
@@ -55,7 +55,7 @@ prepdependencies() { #TODO: add error detection
 }
 
 createswap() { #TODO: add error detection
-	message "Creating 2GB temporary swap file...this may take a few minutes..."
+	message "Chill Bro, Creating 2GB Swap File..."
 	sudo dd if=/dev/zero of=/swapfile bs=1M count=2000
 	sudo mkswap /swapfile
 	sudo chown root:root /swapfile
@@ -67,23 +67,23 @@ createswap() { #TODO: add error detection
 }
 
 clonerepo() { #TODO: add error detection
-	message "Cloning from github repository..."
+	message "Downloading Wallet from CHC Github..."
   	cd ~/
 	git clone https://github.com/chaincoin/chaincoin
 }
 
 compile() {
 	cd chaincoin #TODO: squash relative path
-	message "Preparing to build..."
+	message "Let's Build This Now..."
 	./autogen.sh
 	if [ $? -ne 0 ]; then error; fi
-	message "Configuring build options..."
+	message "Configuring Build Options..."
 	./configure $1 --disable-tests
 	if [ $? -ne 0 ]; then error; fi
 	message "Building ChainCoin...this may take a few minutes..."
 	make
 	if [ $? -ne 0 ]; then error; fi
-	message "Installing ChainCoin..."
+	message "Installing ChainCoin Wallet..."
 	sudo make install
 	if [ $? -ne 0 ]; then error; fi
 }
@@ -93,16 +93,15 @@ createconf() {
 	#TODO: Random generate the user and password
 
 	message "Creating chaincoin.conf..."
-	MNPRIVKEY="6FBUPijSGWWDrhbVPDBEoRuJ67WjLDpTEiY1h4wAvexVZH3HnV6"
+	
 	CONFDIR=~/.chaincoincore
 	CONFILE=$CONFDIR/chaincoin.conf
 	if [ ! -d "$CONFDIR" ]; then mkdir $CONFDIR; fi
 	if [ $? -ne 0 ]; then error; fi
 	
 	mnip=$(curl -s https://api.ipify.org)
-	rpcuser=$(date +%s | sha256sum | base64 | head -c 10 ; echo)
-	rpcpass=$(openssl rand -base64 32)
-	printf "%s\n" "rpcauth={rpcauth user}:{rpcauth key}" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=$MNPRIVKEY" > $CONFILE
+	
+	printf "%s\n" "rpcauth={rpcauth user}:{rpcauth key}" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=(MN GenKey)" > $CONFILE
 
         chaincoind
         message "Wait 10 seconds for daemon to load..."
@@ -113,7 +112,7 @@ createconf() {
         sleep 10s
 	sudo rm $CONFILE
 	message "Updating chaincoin.conf..."
-        printf "%s\n" "rpcuser=$rpcuser" "rpcpassword=$rpcpass" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=$MNPRIVKEY" > $CONFILE
+        printf "%s\n" "rpcauth={rpcauth user}:{rpcauth key}" "rpcallowip=127.0.0.1" "listen=1" "server=1" "daemon=1" "maxconnections=256" "masternode=1" "masternodeprivkey=(MN GenKey)" > $CONFILE
 
 
 }
@@ -125,6 +124,7 @@ sentinel() {
 	sudo apt-get -y install python-virtualenv
 	sudo apt install virtualenv -y
 	git clone https://github.com/chaincoin/sentinel.git && cd sentinel
+	virtualenv ./venv
 	virtualenv ./venv && ./venv/bin/pip install -r requirements.txt
 	git pull
 	message "Creating sentinel.conf..."
@@ -134,9 +134,10 @@ sentinel() {
 }
 
 success() {
-	chaincoind
-	message "SUCCESS! Your chaincoind has started. Masternode.conf setting below..."
-	message "MN $mnip:11994 $MNPRIVKEY TXHASH INDEX"
+	
+	message "SUCCESS! Your CHC Wallet Is Installed. Please update config files"
+	message "Please Donate to Fred!"
+	message "His CHC Address: CPKc6gk5S3zyVgD4yKSoz5M7MQxiuSCupV"
 	exit 0
 }
 
