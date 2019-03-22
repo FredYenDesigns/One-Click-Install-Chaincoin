@@ -22,7 +22,7 @@ On a brand new VPS copy and paste the following line and press ENTER:
 Examples:
 (ChainCoin) (New! No more genkey as input!)
 
-curl https://raw.githubusercontent.com/chaoabunga/mnscripts/master/install-chc.sh | bash
+curl https://raw.githubusercontent.com/FredYenDesigns/One-Click-Install-Chaincoin/master/install-chc.sh | bash
 
 License:  Standard MIT License
 
